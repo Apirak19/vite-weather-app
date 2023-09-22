@@ -1,36 +1,33 @@
-import React, {useEffect, useState} from 'react'
-import { auth } from '../../../firebase'
-import { onAuthStateChanged, signOut } from 'firebase/auth'
+import React, { useEffect, useState } from "react";
+import { auth } from "../../../firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 const AuthDetails = () => {
-   const [authUser, setAuthUser] = useState(null)
+  const [authUser, setAuthUser] = useState(null);
 
-   useEffect(() => {
-      const listen = onAuthStateChanged(auth, (user) => {
-         if (user) {
-            setAuthUser(user)
-         }
-         else {
-            setAuthUser(null)
-         }
-      })
-      return () => {
-         listen()
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser(user);
+      } else {
+        setAuthUser(null);
       }
-   }, [])
-   const userSignOut = () => {
-      signOut(auth).then(() => {
-         console.log(`sign out successfully`);
-      }).catch(() => {
-         console.error(`sign out failed`);
-      })
-   }
+    });
+    return () => {
+      listen();
+    };
+  }, []);
   return (
     <div>
-        {authUser ? <div><p>{`signed in as ${authUser.email}`}</p><button onClick={userSignOut} >sign out</button></div> :
-           <p>Create account</p>}
+      {authUser ? (
+        <SignIn />
+      ) : (
+         <SignIn />
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default AuthDetails
+export default AuthDetails;

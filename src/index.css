@@ -73,3 +73,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.log-in-container {
+  width: clamp(300px, 50vw, 500px);
+  height: clamp(500px, 60vw, 700px);
+}
