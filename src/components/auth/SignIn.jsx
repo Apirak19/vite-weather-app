@@ -47,6 +47,7 @@ const SignIn = () => {
       <div>
         <p>{`signed in as ${authUser.email}`}</p>
         <h1>something here</h1>
+        <h2>something more here</h2>
         <button onClick={userSignOut}>sign out</button>
       </div>
     </div>
